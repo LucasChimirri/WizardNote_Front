@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WizardNote - Acessar Conta</title>
+    <link rel="stylesheet" href="Front.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Lado Esquerdo -->
+        <div class="left-side">
+            <div class="welcome-section">
+                <h1>Bem-Vindo de volta!</h1>
+                <p>Logue-se para aproveitar o que a WizardNote tem de melhor!</p>
+            </div>
+            <div class="logo-section">
+                <img src="Bruxo.png" alt="WizardNote Logo">
+                <h2>WizardNote</h2>
+            </div>
+        </div>
+
+        <!-- Divisor Vertical -->
+        <div class="divider"></div>
+
+        <!-- Lado Direito - Formulário de Login -->
+        <div class="right-side">
+            <div class="form-section">
+                <h2>Acessar a sua conta</h2>
+                <form id="loginForm">
+                    <!-- Campo E-mail -->
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">✉</span>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                class="form-input"
+                                placeholder=""
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Campo Senha -->
+                    <div class="form-group">
+                        <label for="senha">Senha</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input 
+                                type="password" 
+                                id="senha" 
+                                name="senha" 
+                                class="form-input"
+                                placeholder=""
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Checkbox Lembrar de mim -->
+                    <div class="checkbox-group">
+                        <input 
+                            type="checkbox" 
+                            id="lembrarMe" 
+                            name="lembrarMe"
+                        >
+                        <label for="lembrarMe">Lembrar de mim</label>
+                    </div>
+
+                    <!-- Esqueceu a senha -->
+                    <div class="forgot-password">
+                        <a href="#">Esqueceu a senha?</a>
+                    </div>
+
+                    <!-- Botão Login -->
+                    <button type="submit" class="btn-submit">
+                        Login
+                    </button>
+                </form>
+
+                <!-- Link para Registro -->
+                <div class="register-link">
+                    Não possui uma conta? <a href="Criar_conta.html">Registre-se</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Services.js"></script>
+</body>
+</html>

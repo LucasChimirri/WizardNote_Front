@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WizardNote - Criar Conta</title>
+    <link rel="stylesheet" href="Front.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Lado Esquerdo -->
+        <div class="left-side">
+            <div class="welcome-section">
+                <h1>Bem-Vindo!</h1>
+                <p>Cadastre-se para aproveitar o que a WizardNote tem de melhor!</p>
+            </div>
+            <div class="logo-section">
+                <img src="Bruxo.png" alt="WizardNote Logo">
+                <h2>WizardNote</h2>
+            </div>
+        </div>
+
+        <!-- Divisor Vertical -->
+        <div class="divider"></div>
+
+        <!-- Lado Direito - Formulário -->
+        <div class="right-side">
+            <div class="form-section">
+                <h2>Crie a sua conta</h2>
+                <form id="cadastroForm">
+                    <!-- Campo E-mail -->
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">✉</span>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                class="form-input"
+                                placeholder=""
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Campo Nome -->
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">👤</span>
+                            <input 
+                                type="text" 
+                                id="nome" 
+                                name="nome" 
+                                class="form-input"
+                                placeholder=""
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Campo Senha -->
+                    <div class="form-group">
+                        <label for="senha">Senha</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input 
+                                type="password" 
+                                id="senha" 
+                                name="senha" 
+                                class="form-input"
+                                placeholder=""
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Botão Cadastrar -->
+                    <button type="submit" class="btn-submit">
+                        Cadastrar-se
+                    </button>
+                </form>
+
+                <!-- Link para Login -->
+                <div class="login-link">
+                    Já possui uma conta? <a href="Login.html">Logue-se</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Services.js"></script>
+</body>
+</html>

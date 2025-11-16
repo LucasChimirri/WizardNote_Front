@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WizardNote - Minhas Notas</title>
+    <link rel="stylesheet" href="Front.css">
+</head>
+<body>
+    <!-- Header da Aplicação -->
+    <header class="app-header">
+        <div class="header-left">
+            <img src="Bruxo.png" alt="WizardNote Logo" class="header-logo">
+            <h1 class="header-title">Wizard Note</h1>
+        </div>
+        
+        <div class="header-right">
+            <span class="user-greeting">Olá, Alfonsona!</span>
+            
+            <!-- Dropdown do Usuário -->
+            <div class="user-dropdown">
+                <button class="user-icon-btn" id="userMenuBtn">
+                    👤
+                </button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="#" id="configLink">Configurações</a>
+                    <a href="#" id="logoutLink">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <div class="content-header">
+            <h2 class="content-title">Minhas notas</h2>
+            
+            <!-- Área de Busca e Filtros -->
+            <div class="search-filter-area">
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        class="search-input" 
+                        id="searchInput"
+                        placeholder="Pesquisar notas..."
+                    >
+                    <span class="search-icon">🔍</span>
+                </div>
+                
+                <div class="filter-box">
+                    <input 
+                        type="text" 
+                        class="filter-input" 
+                        id="filterInput"
+                        placeholder="Filtrar por..."
+                    >
+                    <span class="filter-icon">▼</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid de Notas -->
+        <div class="notes-grid" id="notesGrid">
+            <!-- Nota 1 - Grande vertical -->
+            <div class="note-card" data-note-id="1">
+            </div>
+
+            <!-- Nota 2 -->
+            <div class="note-card" data-note-id="2">
+            </div>
+
+            <!-- Nota 3 -->
+            <div class="note-card" data-note-id="3">
+            </div>
+
+            <!-- Nota 4 - Grande horizontal -->
+            <div class="note-card" data-note-id="4">
+            </div>
+
+            <!-- Nota 5 -->
+            <div class="note-card" data-note-id="5">
+            </div>
+
+            <!-- Nota 6 -->
+            <div class="note-card" data-note-id="6">
+            </div>
+
+            <!-- Botão Criar Nova Nota -->
+            <button class="create-note-btn" id="createNoteBtn">
+                <span class="plus-icon">+</span>
+                <span>Crie uma nota ...</span>
+            </button>
+        </div>
+    </main>
+
+    <script src="Services.js"></script>
+</body>
+</html>
