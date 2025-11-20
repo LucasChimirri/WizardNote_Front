@@ -56,6 +56,12 @@
                     >
                     <span class="filter-icon">▼</span>
                 </div>
+
+                <!-- Botão Criar Nova Nota -->
+                <button class="create-note-btn" id="createNoteBtn">
+                    <span class="plus-icon">+</span>
+                    <span>Crie uma nota ...</span>
+                </button>
             </div>
         </div>
 
@@ -84,14 +90,87 @@
             <!-- Nota 6 -->
             <div class="note-card" data-note-id="6">
             </div>
-
-            <!-- Botão Criar Nova Nota -->
-            <button class="create-note-btn" id="createNoteBtn">
-                <span class="plus-icon">+</span>
-                <span>Crie uma nota ...</span>
-            </button>
         </div>
     </main>
+
+    <!-- Modal Criar Nota -->
+    <div class="modal-overlay" id="modalCreateNote">
+        <div class="modal-container">
+            <!-- Header do Modal -->
+            <div class="modal-header">
+                <h3 class="modal-title">Criar uma nota...</h3>
+                
+                <!-- Botões do Header -->
+                <div class="modal-header-buttons">
+                    <button class="modal-header-btn criar-btn" id="modalCriarBtn">
+                        <span>+</span>
+                        <span>Criar</span>
+                    </button>
+                    <button class="modal-header-btn fechar-btn" id="modalFecharBtn">
+                        <span>×</span>
+                        <span>Fechar</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Corpo do Modal -->
+            <div class="modal-body">
+                <!-- Título -->
+                <div class="modal-form-group">
+                    <input 
+                        type="text" 
+                        class="modal-input" 
+                        id="noteTitleInput"
+                        name="title"
+                        placeholder="Título....."
+                    >
+                </div>
+
+                <!-- Conteúdo -->
+                <div class="modal-form-group">
+                    <textarea 
+                        class="modal-input modal-textarea" 
+                        id="noteContentInput"
+                        name="content"
+                        placeholder="Conteúdo da sua nota..."
+                    ></textarea>
+                </div>
+
+                <!-- Resumo -->
+                <div class="modal-form-group">
+                    <textarea 
+                        class="modal-input modal-textarea-resumo" 
+                        id="noteResumoInput"
+                        name="resumo"
+                        placeholder="Resumo da nota"
+                    ></textarea>
+                </div>
+            </div>
+
+            <!-- Footer do Modal -->
+            <div class="modal-footer">
+                <!-- Botão anexar -->
+                <button class="modal-attach-btn" id="modalAttachBtn" title="Anexar arquivo">
+                    📎
+                </button>
+
+                <div class="modal-footer-right">
+                    <!-- Tags -->
+                    <input 
+                        type="text" 
+                        class="modal-tags-input" 
+                        id="noteTagsInput"
+                        placeholder="Tags"
+                    >
+
+                    <!-- Botão Resumir -->
+                    <button class="modal-resumir-btn" id="modalResumirBtn">
+                        Resumir nota
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="Services.js"></script>
 </body>

@@ -6,9 +6,10 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
-    overflow: hidden;
+    flex-direction: column;
+    overflow-x: hidden;
 }
 
 .container {
@@ -294,7 +295,7 @@ body {
 
 /* ========== TELA INICIAL - DASHBOARD ========== */
 
-/* Header da aplicação */
+/* Header da aplicação - NO TOPO */
 .app-header {
     background-color: #e0e0e0;
     border: 3px solid #4a90e2;
@@ -302,7 +303,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .header-left {
@@ -325,15 +329,13 @@ body {
 
 .header-right {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 15px;
 }
 
 .user-greeting {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: #666;
-    margin-top: 5px;
 }
 
 /* Dropdown do usuário */
@@ -408,6 +410,7 @@ body {
     padding: 40px;
     background-color: #fff;
     min-height: calc(100vh - 100px);
+    width: 100%;
 }
 
 .content-header {
@@ -423,16 +426,18 @@ body {
     font-weight: 400;
 }
 
-/* Área de busca e filtros */
+/* Área de busca e filtros - AGORA COM BOTÃO CRIAR NOTA */
 .search-filter-area {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    width: 280px;
+    width: auto;
+    align-items: flex-end;
 }
 
 .search-box, .filter-box {
     position: relative;
+    width: 280px;
 }
 
 .search-input, .filter-input {
@@ -460,7 +465,35 @@ body {
     pointer-events: none;
 }
 
-/* Grid de notas */
+/* Botão criar nota - MOVIDO PARA O TOPO AO LADO DOS FILTROS */
+.create-note-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 2px dashed #999;
+    border-radius: 6px;
+    color: #666;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 280px;
+    height: 42px;
+}
+
+.create-note-btn:hover {
+    border-color: #666;
+    background-color: #f9f9f9;
+}
+
+.create-note-btn .plus-icon {
+    font-size: 1.3rem;
+    font-weight: 300;
+}
+
+/* Grid de notas - SEM O BOTÃO CRIAR NOTA AQUI */
 .notes-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -494,32 +527,272 @@ body {
     min-height: 320px;
 }
 
-/* Botão criar nota */
-.create-note-btn {
+/* ========== MODAL CRIAR NOTA ========== */
+
+/* Overlay do Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+/* Container do Modal */
+.modal-container {
+    background-color: #fff;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header do Modal */
+.modal-header {
+    padding: 25px 30px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #f9f9f9;
+    border-radius: 12px 12px 0 0;
+}
+
+.modal-title {
+    font-size: 1.4rem;
+    color: #333;
+    font-weight: 400;
+}
+
+/* Botões do Header */
+.modal-header-buttons {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 8px;
+}
+
+.modal-header-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.modal-header-btn.criar-btn {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.modal-header-btn.criar-btn:hover {
+    background-color: #d0d0d0;
+}
+
+.modal-header-btn.fechar-btn {
+    background-color: transparent;
+    color: #666;
+}
+
+.modal-header-btn.fechar-btn:hover {
+    background-color: #f0f0f0;
+}
+
+/* Corpo do Modal */
+.modal-body {
+    padding: 30px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Campos do formulário do modal */
+.modal-form-group {
+    margin-bottom: 20px;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 0.95rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f5f5f5;
+    color: #333;
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.modal-input::placeholder {
+    color: #999;
+}
+
+.modal-input:focus {
+    background-color: #fff;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.modal-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.modal-textarea-resumo {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Footer do Modal */
+.modal-footer {
+    padding: 20px 30px;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    border-radius: 0 0 12px 12px;
+}
+
+.modal-attach-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1px solid #999;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding: 15px;
-    background-color: transparent;
-    border: 2px dashed #999;
-    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
     color: #666;
+}
+
+.modal-attach-btn:hover {
+    background-color: #f0f0f0;
+    border-color: #666;
+}
+
+.modal-footer-right {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.modal-tags-input {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f5f5f5;
+    color: #333;
+    outline: none;
+    width: 200px;
+    transition: all 0.3s ease;
+}
+
+.modal-tags-input::placeholder {
+    color: #999;
+}
+
+.modal-tags-input:focus {
+    background-color: #fff;
+    border-color: #4a90e2;
+}
+
+.modal-resumir-btn {
+    padding: 10px 24px;
     font-size: 0.95rem;
+    border: none;
+    border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
-    min-height: 150px;
-    grid-column: 3;
+    font-weight: 500;
+    background-color: #c4c4c4;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.create-note-btn:hover {
-    border-color: #666;
-    background-color: #f9f9f9;
+.modal-resumir-btn:hover {
+    background-color: #b0b0b0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.create-note-btn .plus-icon {
-    font-size: 1.5rem;
-    font-weight: 300;
+.modal-resumir-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsividade do Modal */
+@media (max-width: 768px) {
+    .modal-container {
+        width: 95%;
+        max-height: 90vh;
+    }
+    
+    .modal-header {
+        padding: 20px;
+    }
+    
+    .modal-title {
+        font-size: 1.2rem;
+    }
+    
+    .modal-body {
+        padding: 20px;
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+    }
+    
+    .modal-footer-right {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .modal-tags-input {
+        width: 100%;
+    }
+    
+    .modal-resumir-btn {
+        width: 100%;
+    }
 }
 
 /* Responsividade Dashboard */
@@ -529,6 +802,10 @@ body {
     }
     
     .search-filter-area {
+        width: auto;
+    }
+    
+    .search-box, .filter-box, .create-note-btn {
         width: 250px;
     }
 }
@@ -536,10 +813,17 @@ body {
 @media (max-width: 768px) {
     .app-header {
         padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
     }
     
     .header-title {
         font-size: 1.8rem;
+    }
+    
+    .header-right {
+        width: 100%;
+        justify-content: space-between;
     }
     
     .main-content {
@@ -553,10 +837,22 @@ body {
     
     .search-filter-area {
         width: 100%;
+        align-items: stretch;
+    }
+    
+    .search-box, .filter-box, .create-note-btn {
+        width: 100%;
     }
     
     .notes-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .note-card:first-child,
+    .note-card:nth-child(4) {
+        grid-column: 1;
+        grid-row: auto;
+        min-height: 150px;
     }
 }
 
